@@ -1,0 +1,23 @@
+{
+    "name": "titravel/api-sdk-php",
+    "description": "To Island Travel's PHP SDK for API",
+    "keywords": ["titravel", "toislandstravel", "api", "sdk"],
+    "type": "library",
+    "license": "Apache2",
+    "homepage": "https://github.com/toislandstravel/titravel-sdk-php",
+    "authors": [
+        {
+            "name": "To Islands Travel",
+            "homepage": "http://titravel.hr/"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.0",
+        "ext-json": "*"
+    },
+    "autoload": {
+        "psr-0": {
+            "TiTravel\\": "lib/"
+        }
+    }
+}
