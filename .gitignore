@@ -1,0 +1,12 @@
+.idea/*
+composer.phar
+vendor/*
+vagrant/*
+Vagrantfile
+*.swp
+.buildpath
+.project
+.settings
+.vagrant
+.DS_Store
+nbproject/
