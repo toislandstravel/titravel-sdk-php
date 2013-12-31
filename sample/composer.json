@@ -1,0 +1,14 @@
+{
+    "name": "titravel/titravel-api-sdk-sample-php",
+    "description": "Samples using To Islands Travel's API SDK for PHP",
+    "homepage": "https://github.com/toislandstravel/titravel-sdk-php",
+    "config": {
+        "require-all": true
+    },
+    "require": {
+        "php": ">=5.3.0",
+        "ext-curl": "*",
+        "ext-json": "*",
+        "titravel/titravel-api-sdk-sample-php" : "dev-master"
+    }
+}

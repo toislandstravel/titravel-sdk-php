@@ -1,7 +1,8 @@
-.idea/*
+.idea
 composer.phar
-vendor/*
-vagrant/*
+composer.lock
+vendor
+vagrant
 Vagrantfile
 *.swp
 .buildpath
@@ -9,4 +10,4 @@ Vagrantfile
 .settings
 .vagrant
 .DS_Store
-nbproject/
+nbproject
