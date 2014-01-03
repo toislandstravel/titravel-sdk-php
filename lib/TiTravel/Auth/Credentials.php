@@ -6,7 +6,8 @@ namespace TiTravel\Auth;
  * Titravel API's username & password credentials
  *
  */
-class Credentials {
+class Credentials
+{
 
     /**
      * Client b2b ID id obtained from To Islands Travel
