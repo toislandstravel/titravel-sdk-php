@@ -5,7 +5,7 @@ use TiTravel\Api\Property;
 use TiTravel\Auth\Credentials;
 use TiTravel\Transport\XmlCall;
 
-class Properties extends Model
+class PropertiesInfo extends Model
 {
     /**
      * Number of properties returned
@@ -32,6 +32,10 @@ class Properties extends Model
         $properties = array();
         $this->count = 0;
         foreach ($sxe->children() as $property) {
+            if ($property->getName() == 'PartnerNote') {
+                continue;
+            }
+
             $prop = new Property();
             $prop->fromXml($property);
             $properties[] = $prop;
@@ -42,11 +46,8 @@ class Properties extends Model
     }
 
     /**
-     * Retrive all property details matching the $params filter.
-     * Results are paginated at 500 per response
-     * $params['page'] is the page number
-     *
-     * @param  array $params            filter paramaters
+     * Retrive all properties matching the $params filter
+     * @param  array $params            filter paramaters (city_id, category_id)
      * @param  Credentials $credentials API credentials
      * @return Properties  the retreived properties
      */
@@ -60,23 +61,19 @@ class Properties extends Model
         }
         $allowedParams = array(
             'language' => 1,
-            'page' => 1,
             'city_id' => 1,
             'category_id' => 1,
-            'property_id' => 1,
-            'property_ids' => 1,
-            'range' => 1,
         );
         $wrongParams = array_diff_key($params, $allowedParams);
         if (!empty($wrongParams)) {
-            throw new \InvalidArgumentException('Invalid $params argument keys: '.implode(', ', array_keys($wrongParams)));
+            throw new \InvalidArgumentException('Invalid $params filter: '.implode(', ', array_keys($wrongParams)));
         }
 
         $call = new XmlCall($credentials);
-        $sxe = $call->execute("getproperty&" .
+        $sxe = $call->execute("getproperties&" .
             http_build_query(array_intersect_key($params, $allowedParams)));
 
-        $ret = new Properties();
+        $ret = new PropertiesInfo();
         $ret->fromXML($sxe);
         return $ret;
     }
