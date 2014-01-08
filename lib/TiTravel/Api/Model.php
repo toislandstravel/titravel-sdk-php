@@ -11,7 +11,7 @@ abstract class Model
     private static $credentials;
 
     /**
-     * The model response data
+     * The model data
      * @var array
      */
     private $_data = array();
@@ -21,23 +21,32 @@ abstract class Model
         return $this->_data[$key];
     }
 
-    public function __set($key, $value) {
+    public function __set($key, $value)
+    {
         $this->_data[$key] = $value;
     }
 
-    public function __isset($key) {
+    public function __isset($key)
+    {
         return isset($this->_data[$key]);
     }
 
-    public function __unset($key) {
+    public function __unset($key)
+    {
         unset($this->_data[$key]);
+    }
+
+    public function setData($data)
+    {
+        $this->_data = $data;
     }
 
     /**
      * Returns the results as array
      * @return array the results
      */
-    public function toArray() {
+    public function toArray()
+    {
         return $this->_convertToArray($this->_data);
     }
 
@@ -46,7 +55,8 @@ abstract class Model
      * @param  mixed $param
      * @return array
      */
-    private function _convertToArray($param) {
+    private function _convertToArray($param)
+    {
         $ret = array();
         foreach($param as $k => $v) {
             if($v instanceof Model) {

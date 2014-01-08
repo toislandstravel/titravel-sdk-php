@@ -18,16 +18,14 @@ use TiTravel\Api\Properties;
  */
 try {
     $params = array(
-        'city_id' => null,
+        'city_id' => 226,
         'category_id' => null,
     );
-    $properties = Properties::get($params, $apiCredentials);
+    $properties = Properties::all($params, $apiCredentials);
 } catch (Exception $ex) {
     echo "Exception:" . $ex->getMessage() . PHP_EOL;
     exit(1);
 }
-var_dump($properties);
-die();
 ?>
 <html>
 <head>

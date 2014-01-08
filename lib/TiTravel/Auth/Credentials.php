@@ -48,4 +48,16 @@ class Credentials
     {
         return $this->b2b;
     }
+
+    /**
+     * Returns the credentials as array
+     * @return array
+     */
+    public function getArray()
+    {
+        return array(
+            'b2b' => $this->getB2B(),
+            'code' => $this->getCode(),
+        );
+    }
 }
