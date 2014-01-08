@@ -5,6 +5,12 @@ use TiTravel\Auth\Credentials;
 abstract class Model
 {
     /**
+     * [$data description]
+     * @var array
+     */
+    private static $data = array();
+
+    /**
      * TiTravel API credentials
      * @var TiTravel\Api\Credentials
      */
