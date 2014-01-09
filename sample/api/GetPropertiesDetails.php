@@ -1,8 +1,7 @@
 <?php
 /**
  * This sample demonstrates how to get
- * the properties list with basic info
- * on their last update date
+ * the properties detailed list
  *
  * API action: getproperty
  */
@@ -44,8 +43,9 @@ $start = $countPerPage * ($page - 1) + 1;
     <div>Got <?php echo $start, ' to ', $start + $count - 1, " ($count)"; ?> out of
     <?php echo $properties->getCountTotal(); ?> total matching properties<br>
     Page: <?php echo $page; ?> / <?php echo $properties->getPageMax(); ?></div>
-    Max. items per page: <?php echo $countPerPage; ?></div>
-    <pre><?php var_dump($properties->toArray());?></pre>
+    Max. items per page: <?php echo $countPerPage; ?><br><br>
+    Retreived properties:</div>
+    <pre><?php print_r($properties->toArray());?></pre>
     <a href='../index.htm'>Back</a>
 </body>
 </html>
