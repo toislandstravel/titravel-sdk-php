@@ -16,7 +16,7 @@ class PartnerNote extends Model
     {
         foreach ($sxe->children() as $property) {
             if ($property->getName() == 'PartnerNote') {
-                $this->note = (string)$property->nodeValue;
+                $this->note = (string)$property;
                 return $this;
             }
         }
@@ -34,8 +34,8 @@ class PartnerNote extends Model
         if (empty($params)) {
             $params = array();
         }
-        // prevent loading properties to speed things up
-        $params['city_id'] = 0;
+        // city with no properties improves load time
+        $params['city_id'] = 1;
         if (!empty($credentials)) {
             self::setCredentials($credentials);
         }
@@ -51,7 +51,6 @@ class PartnerNote extends Model
         $call = new XmlCall($credentials);
         $sxe = $call->execute("getproperties&" .
             http_build_query(array_intersect_key($params, $allowedParams)));
-
         $ret = new PartnerNote();
         $ret->fromXML($sxe);
         return $ret;
