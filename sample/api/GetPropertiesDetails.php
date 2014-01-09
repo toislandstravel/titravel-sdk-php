@@ -19,7 +19,7 @@ use TiTravel\Api\Properties;
 try {
     $params = array(
         'language' => 'en',
-        'page' => 1,
+        'page' => 2,
         'city_id' => null,
         'category_id' => null,
         'property_id' => null,
@@ -31,13 +31,20 @@ try {
     echo 'Exception:', $ex->getMessage(), PHP_EOL;
     exit(1);
 }
+$count = $properties->getCount();
+$page = $properties->getPage();
+$countPerPage = $properties->getResultsPerPageLimit();
+$start = $countPerPage * ($page - 1) + 1;
 ?>
 <html>
 <head>
 <title>Get properties details</title>
 </head>
 <body>
-    <div>Got <?php echo $properties->getCount(); ?> matching properties</div>
+    <div>Got <?php echo $start, ' to ', $start + $count - 1, " ($count)"; ?> out of
+    <?php echo $properties->getCountTotal(); ?> total matching properties<br>
+    Page: <?php echo $page; ?> / <?php echo $properties->getPageMax(); ?></div>
+    Max. items per page: <?php echo $countPerPage; ?></div>
     <pre><?php var_dump($properties->toArray());?></pre>
     <a href='../index.htm'>Back</a>
 </body>

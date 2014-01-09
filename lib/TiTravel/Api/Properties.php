@@ -8,10 +8,49 @@ use TiTravel\Transport\XmlCall;
 class Properties extends Model
 {
     /**
-     * Number of properties returned
+     * Total number of properties
+     * @var integer
+     */
+    private $countTotal = 0;
+
+    /**
+     * Number of properties on current page
      * @var integer
      */
     private $count = 0;
+
+    /**
+     * Maximum number of properties per page
+     * @var integer
+     */
+    private $maxPropertiesPerPage = 1;
+
+    /**
+     * Page retreived
+     * @var integer
+     */
+    private $page = 0;
+
+    /**
+     * Page retreived
+     * @var integer
+     */
+    private $pageMax = 0;
+
+    /**
+     * Maximum number of properties per page
+     * @var integer
+     */
+    private $maxResultsPerPage = 100;
+
+    /**
+     * Returns the properties count
+     * @return int
+     */
+    public function getCountTotal()
+    {
+        return $this->countTotal;
+    }
 
     /**
      * Returns the properties count
@@ -23,6 +62,33 @@ class Properties extends Model
     }
 
     /**
+     * Returns the current properties page
+     * @return int
+     */
+    public function getPage()
+    {
+        return $this->page;
+    }
+
+    /**
+     * Returns the maximum available results page
+     * @return int
+     */
+    public function getPageMax()
+    {
+        return $this->pageMax;
+    }
+
+    /**
+     * Returns the maximum available results per page
+     * @return int
+     */
+    public function getResultsPerPageLimit()
+    {
+        return $this->maxResultsPerPage;
+    }
+
+    /**
      * Create properties from XML
      * @param  \SimpleXMLElement $sxe the API response
      * @return Properties
@@ -31,6 +97,9 @@ class Properties extends Model
     {
         $properties = array();
         $this->count = 0;
+        $this->countTotal = $sxe['results_count'];
+        $this->page = $sxe['page'];
+        $this->pageMax = $sxe['page_max'];
         foreach ($sxe->children() as $property) {
             $prop = new Property();
             $prop->fromXml($property);
