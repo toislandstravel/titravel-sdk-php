@@ -29,7 +29,7 @@ try {
 </head>
 <body>
     <div>Got partner note:</div>
-    <pre><?php var_dump($note->note);?></pre>
+    <pre><?php print_r($note->note);?></pre>
     <a href='../index.htm'>Back</a>
 </body>
 </html>

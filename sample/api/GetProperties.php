@@ -33,7 +33,7 @@ try {
 </head>
 <body>
     <div>Got <?php echo $properties->getCount(); ?> matching properties</div>
-    <pre><?php var_dump($properties->toArray());?></pre>
+    <pre><?php print_r($properties->toArray());?></pre>
     <a href='../index.htm'>Back</a>
 </body>
 </html>
