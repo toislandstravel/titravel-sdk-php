@@ -6,7 +6,8 @@ namespace TiTravel\Auth;
  * Titravel API's username & password credentials
  *
  */
-class Credentials {
+class Credentials
+{
 
     /**
      * Client b2b ID id obtained from To Islands Travel
@@ -46,5 +47,17 @@ class Credentials {
     public function getB2B()
     {
         return $this->b2b;
+    }
+
+    /**
+     * Returns the credentials as array
+     * @return array
+     */
+    public function getArray()
+    {
+        return array(
+            'b2b' => $this->getB2B(),
+            'code' => $this->getCode(),
+        );
     }
 }

@@ -19,3 +19,7 @@ if(($config = parse_ini_file(__DIR__ .'/config.ini')) === false) {
     echo "The 'config.ini' is broken.\nPlease see the README for more information.\n";
     exit(1);
 }
+
+use TiTravel\Auth\Credentials;
+
+$apiCredentials = new Credentials($config['b2b'], $config['code']);
