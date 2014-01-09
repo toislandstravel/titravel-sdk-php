@@ -29,24 +29,33 @@ class Attribute extends Model
         $attributes = array();
         foreach ($sxe->children() as $group) {
             $id = (string)$group['id'];
-            $attributes[$id] = array(
-                'label' => (string)$group->Summary['label'],
-                'summary' => (string)$group->Summary,
+            $att = array(
+                'id' => $id,
+                'title' => (string)$group['title'],
                 'attributes' => array(),
             );
             if (empty($group->Attributes)) {
                 continue;
             }
             foreach ($group->Attributes->children() as $attribute) {
-                $values = (string)$attribute;
+                $id = (string)$attribute['id'];
+                $info = array(
+                    'id' => $id,
+                    'type' => (string)$attribute['type'],
+                    'title' => (string)$attribute['title'],
+                    'values' => array(),
+                );
                 if ($attribute->count()) {
-                    $values = array();
                     foreach ($attribute->children() as $value) {
-                        $values[(string)$value['id']] = (string)$value;
+                        $info['values'][] = array(
+                            'id' => (string)$value['id'],
+                            'title' => (string)$value,
+                        );
                     }
                 }
-                $attributes[$id]['attributes'][(string)$attribute['id']] = $values;
+                $att['attributes'][] = $info;
             }
+            $attributes[] = $att;
         }
         return $attributes;
     }
