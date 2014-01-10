@@ -111,7 +111,7 @@ class Properties extends Model
     }
 
     /**
-     * Retrive all property details matching the $params filter.
+     * Retrieve all property details matching the $params filter.
      * Results are paginated at 500 per response
      * $params['page'] is the page number
      *
