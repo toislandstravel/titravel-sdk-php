@@ -43,7 +43,7 @@ class Prices extends Model
     }
 
     /**
-     * Retrive all prices matching the $params filter
+     * Retrieve all prices matching the $params filter
      * @param  array $params            filter parameters
      * @param  Credentials $credentials API credentials
      * @return Properties  the retreived prices
