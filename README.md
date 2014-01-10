@@ -19,26 +19,24 @@ This repository contains To Islands Travel's PHP SDK and samples for our API
 
 To write an app that uses the SDK:
 
-    * add `titravel/api-sdk-php` to your `composer.json` require list
-    * run `composer update --no-dev` to fetch dependencies
+    * add 'titravel/api-sdk-php' to your 'composer.json' require list or copy the [samples/composer.json] to your project's root
+    * run 'composer update --no-dev' to fetch dependencies
     * obtain API credentials from [To Islands Travel](http://www.titravel.hr/)
     * now you are all set to make your first API call
 
 ```php
+$apiCredentials = new \TiTravel\Auth\Credentials($config['b2b'], $config['code']);
 
-    $apiCredentials = new \TiTravel\Auth\Credentials($config['b2b'], $config['code']);
+try {
+    $params = array(
+        'city_id' => null,
+        'category_id' => null,
+    );
+    $properties = PropertiesInfo::all($params, $apiCredentials);
+} catch (Exception $ex) {
+    echo 'Exception:', $ex->getMessage(), PHP_EOL;
+    exit(1);
+}
 
-    try {
-        $params = array(
-            'city_id' => null,
-            'category_id' => null,
-        );
-        $properties = PropertiesInfo::all($params, $apiCredentials);
-    } catch (Exception $ex) {
-        echo 'Exception:', $ex->getMessage(), PHP_EOL;
-        exit(1);
-    }
-
-    print_r($properties->toArray());
-
+print_r($properties->toArray());
 ```
