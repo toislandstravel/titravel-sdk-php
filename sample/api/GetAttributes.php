@@ -31,7 +31,7 @@ try {
 <title>Get attributes</title>
 </head>
 <body>
-    <div>Got <?php echo $attributes->getCount(); ?> matching attributes</div>
+    <div>Got <?php echo $attributes->getCount(); ?> matching attributes categories</div>
     <pre><?php print_r($attributes->toArray());?></pre>
     <a href='../index.htm'>Back</a>
 </body>
