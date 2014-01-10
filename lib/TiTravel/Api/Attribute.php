@@ -43,7 +43,6 @@ class Attribute extends Model
                     'id' => $id,
                     'type' => (string)$attribute['type'],
                     'title' => (string)$attribute['title'],
-                    'values' => array(),
                 );
                 if ($attribute->count()) {
                     foreach ($attribute->children() as $value) {
