@@ -27,6 +27,7 @@ try {
 ?>
 <html>
 <head>
+<meta charset="utf-8">
 <title>Get cities</title>
 </head>
 <body>

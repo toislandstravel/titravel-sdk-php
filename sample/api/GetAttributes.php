@@ -28,6 +28,7 @@ try {
 ?>
 <html>
 <head>
+<meta charset="utf-8">
 <title>Get attributes</title>
 </head>
 <body>

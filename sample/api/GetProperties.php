@@ -29,6 +29,7 @@ try {
 ?>
 <html>
 <head>
+<meta charset="utf-8">
 <title>Get properties update dates</title>
 </head>
 <body>

@@ -1,9 +1,9 @@
 <?php
 /**
  * This sample demonstrates how to get
- * price calculation for a property
+ * send a reservation request for a property
  *
- * API action: getPrice
+ * API action: set
  */
 
 require __DIR__ . '/../bootstrap.php';

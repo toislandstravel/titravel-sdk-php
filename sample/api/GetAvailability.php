@@ -32,6 +32,7 @@ try {
 ?>
 <html>
 <head>
+<meta charset="utf-8">
 <title>Get properties availability dates</title>
 </head>
 <body>

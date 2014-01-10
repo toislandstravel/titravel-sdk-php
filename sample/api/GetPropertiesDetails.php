@@ -37,6 +37,7 @@ $start = $countPerPage * ($page - 1) + 1;
 ?>
 <html>
 <head>
+<meta charset="utf-8">
 <title>Get properties details</title>
 </head>
 <body>
