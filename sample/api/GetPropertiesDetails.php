@@ -18,7 +18,7 @@ use TiTravel\Api\Properties;
 try {
     $params = array(
         'language' => 'en',
-        'page' => 2,
+        'page' => 1,
         'city_id' => null,
         'category_id' => null,
         'property_id' => null,
@@ -37,6 +37,7 @@ $start = $countPerPage * ($page - 1) + 1;
 ?>
 <html>
 <head>
+<meta charset="utf-8">
 <title>Get properties details</title>
 </head>
 <body>

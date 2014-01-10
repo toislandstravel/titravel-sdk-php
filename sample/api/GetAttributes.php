@@ -1,27 +1,26 @@
 <?php
 /**
  * This sample demonstrates how to get
- * the properties list with basic info
- * on their last update date
+ * the available attributes list
  *
- * API action: getproperty
+ * API action: attributes
  */
 
 require __DIR__ . '/../bootstrap.php';
-use TiTravel\Api\PropertiesInfo;
+use TiTravel\Api\Attributes;
 
 
 /**
- * Retrive the properties list using optional
+ * Retrive the attributes list using optional
  * filters and your API credentials
  * (see bootstrap.php for credentials creation)
  */
 try {
     $params = array(
-        'city_id' => null,
+        'language' => 'en',
         'category_id' => null,
     );
-    $properties = PropertiesInfo::all($params, $apiCredentials);
+    $attributes = Attributes::all($params, $apiCredentials);
 } catch (Exception $ex) {
     echo 'Exception:', $ex->getMessage(), PHP_EOL;
     exit(1);
@@ -30,11 +29,11 @@ try {
 <html>
 <head>
 <meta charset="utf-8">
-<title>Get properties update dates</title>
+<title>Get attributes</title>
 </head>
 <body>
-    <div>Got <?php echo $properties->getCount(); ?> matching properties</div>
-    <pre><?php print_r($properties->toArray());?></pre>
+    <div>Got <?php echo $attributes->getCount(); ?> matching attributes categories</div>
+    <pre><?php print_r($attributes->toArray());?></pre>
     <a href='../index.htm'>Back</a>
 </body>
 </html>
