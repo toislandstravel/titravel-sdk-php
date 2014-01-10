@@ -10,3 +10,35 @@ This repository contains To Islands Travel's PHP SDK and samples for our API
    * curl extension must be enabled
    * json extension must be enabled
    * composer for fetching dependencies (See http://getcomposer.org)
+
+## Samples
+
+   * [Running the samples](samples/)
+
+## Usage
+
+To write an app that uses the SDK:
+
+    * add `titravel/api-sdk-php` to your `composer.json` require list
+    * run `composer update --no-dev` to fetch dependencies
+    * obtain API credentials from [To Islands Travel](http://www.titravel.hr/)
+    * now you are all set to make your first API call
+
+```php
+
+    $apiCredentials = new \TiTravel\Auth\Credentials($config['b2b'], $config['code']);
+
+    try {
+        $params = array(
+            'city_id' => null,
+            'category_id' => null,
+        );
+        $properties = PropertiesInfo::all($params, $apiCredentials);
+    } catch (Exception $ex) {
+        echo 'Exception:', $ex->getMessage(), PHP_EOL;
+        exit(1);
+    }
+
+    print_r($properties->toArray());
+
+```
