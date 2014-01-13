@@ -60,10 +60,10 @@ abstract class ApiCall
         curl_setopt($curl, CURLOPT_FOLLOWLOCATION, 0);
 
         $response = curl_exec($curl);
-        $info = curl_getinfo($curl);
+        $header_size = curl_getinfo($curl, CURLINFO_HEADER_SIZE);
         $ret = array(
-            'header' => mb_substr($response, 0, $info['header_size']),
-            'content' => mb_substr($response, -$info['download_content_length']),
+            'header' => mb_substr($response, 0, $header_size),
+            'content' => mb_substr($response, $header_size),
         );
         curl_close($curl);
         return $ret;
