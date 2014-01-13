@@ -3,7 +3,7 @@
  * This sample demonstrates how to send
  * a property reservation request
  *
- * API action: set
+ * API action: sendreservation
  */
 
 require __DIR__ . '/../bootstrap.php';
@@ -16,6 +16,8 @@ use TiTravel\Api\Reservation;
  */
 try {
     $reservationForm = array(
+        // enter your email
+        'email' => '',
         'type' => Reservation::TYPE_RESERVATION,
         'lang' => 'en',
         'property_id' => 11316,
@@ -27,7 +29,6 @@ try {
         'children_ages' => array(1, 7, 13, 17),
         'pets' => 1,
         'phone' => '+0123456789',
-        'email' => 'foo@bar.com',
         'message' => 'Message, question',
         'country' => 'Croatia',
         'return_url' => dirname('http://'.$_SERVER['HTTP_HOST'].$_SERVER['PHP_SELF']).
