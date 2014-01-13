@@ -19,8 +19,8 @@ try {
         'type' => Reservation::TYPE_RESERVATION,
         'lang' => 'en',
         'property_id' => 11316,
-        'name' => 'Name',
-        'surname' => 'Surname',
+        'name' => 'My name',
+        'surname' => 'My surname',
         'date_arrival' => '2014-07-12',
         'date_departure' => '2014-07-19',
         'person_adult' => 2,
@@ -38,7 +38,7 @@ try {
         'property_id' => 11316,
         'data' => base64_encode(serialize($reservationForm)),
     );
-    Reservation::send($params, $apiCredentials);
+    $returnUrl = Reservation::send($params, $apiCredentials);
 } catch (Exception $ex) {
     echo 'Exception:', $ex->getMessage(), PHP_EOL;
     exit(1);
@@ -50,10 +50,10 @@ try {
 <title>Send property reservation request</title>
 </head>
 <body>
-    <strong>Reservation request successfully sent:</strong>
+    <strong>Reservation request sent succesfully:</strong>
     <pre><?php print_r($reservationForm);?></pre>
-    <strong>Confirmation return URL:</strong>
-    <pre><?php print_r($reservationForm['return_url']); ?></pre>
+    <strong>Confirmation URL:</strong>
+    <pre><?php print_r($returnUrl);?></pre>
     <a href='../index.htm'>Back</a>
 </body>
 </html>
