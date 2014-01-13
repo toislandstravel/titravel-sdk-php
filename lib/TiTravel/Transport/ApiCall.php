@@ -46,16 +46,27 @@ abstract class ApiCall
         return http_build_query($this->apiCredentials->getArray());
     }
 
+    /**
+     * Returns the URL headers and content as associative array
+     * @param  string $url URL to grab
+     * @return array
+     */
     public function getURL($url)
     {
         $curl = curl_init();
         curl_setopt($curl, CURLOPT_URL, $url);
-        curl_setopt($curl, CURLOPT_HEADER, 0);
-        curl_setopt($curl, CURLOPT_RETURNTRANSFER, 0);
+        curl_setopt($curl, CURLOPT_HEADER, 1);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($curl, CURLOPT_FOLLOWLOCATION, 0);
 
         $response = curl_exec($curl);
+        $info = curl_getinfo($curl);
+        $ret = array(
+            'header' => mb_substr($response, 0, $info['header_size']),
+            'content' => mb_substr($response, -$info['download_content_length']),
+        );
         curl_close($curl);
-        return $response;
+        return $ret;
     }
 
     /**
@@ -68,8 +79,8 @@ abstract class ApiCall
     public function execute($path, $method = 'GET')
     {
         $response = $this->getURL($this->getEndpointUrl().$path);
-        // API returns empty string on invalid credentials
-        if (empty($response)) {
+        // API returns empty content and no redirect on invalid credentials
+        if (empty($response['content']) && mb_strpos('location:', strtolower($response['header'])) === false) {
             throw new \Exception('API credentials invalid');
         }
 
