@@ -9,7 +9,7 @@ To run the samples, you must install dependencies:
   a) Install using [Composer](http://getcomposer.org):
      Run `composer update --no-dev` from sample dir to fetch dependencies
 
-  b) Download manually from http://.. and unzip the contents to the sample/ folder
+  b) Download manually from http://.. and unzip the contents to the `sample/` folder
 
 Update configuration:
 
