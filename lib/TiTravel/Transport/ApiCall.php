@@ -80,7 +80,7 @@ abstract class ApiCall
     {
         $response = $this->getURL($this->getEndpointUrl().$path);
         // API returns empty content and no redirect on invalid credentials
-        if (empty($response['content']) && mb_strpos('location:', strtolower($response['header'])) === false) {
+        if (empty($response['content']) && mb_strpos(strtolower($response['header']), 'location:') === false) {
             throw new \Exception('API credentials invalid');
         }
 
