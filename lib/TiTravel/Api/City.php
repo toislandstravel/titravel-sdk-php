@@ -8,7 +8,7 @@ class City extends Model
     {
         $this->id = (int)$city['id'];
         $this->parent_id = (int)$city['parent_id'];
-        $this->zip = (int)$city['zip'];
+        $this->zip = (string)$city['zip'];
         $this->title = (string)$city;
     }
 }
