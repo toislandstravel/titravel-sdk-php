@@ -11,7 +11,7 @@ To run the samples, you must:
   a) Install using [Composer](http://getcomposer.org):
      Run `composer update --no-dev` from sample dir to fetch dependencies
 
-  b) Download manually from https://github.com/toislandstravel/sdk-packages/raw/master/titravel-api-php-sdk-v0.1.zip and unzip the contents to the `sample/` folder
+  b) Download manually from https://github.com/toislandstravel/sdk-packages/raw/master/titravel-api-php-sdk-v0.1.1.zip and unzip the contents to the `sample/` folder
 
 2. Update configuration:
 
