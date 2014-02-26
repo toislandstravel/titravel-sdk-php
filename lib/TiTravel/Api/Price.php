@@ -4,6 +4,19 @@ use TiTravel\Api\Model;
 
 class Price extends Model
 {
+    /**
+     * Node names of basic compensations
+     * @var array
+     */
+    protected $basicCompensations = array(
+        'Label',
+        'Name',
+        'Description',
+        'Amount',
+        'Unit',
+        'AgencyCommission'
+    );
+
     public function fromXML(\SimpleXMLElement $property)
     {
         $this->setData(array(
@@ -42,7 +55,7 @@ class Price extends Model
             return $ret;
         }
         foreach($compensations->children() as $compensation) {
-            $ret[] = array(
+            $compensationData = array(
                 'id' => (int)$compensation['id'],
                 'type' => (string)$compensation['type'],
                 'label' => (string)$compensation->Label,
@@ -52,19 +65,39 @@ class Price extends Model
                     'value' => (string)$compensation->Amount,
                 ),
                 'description' => (string)$compensation->Description,
-                'code' => array(
-                    'id' => (string)$compensation->Code['id'],
-                    'label' => (string)$compensation->Code,
-                ),
                 'unit' => array(
                     'type' => (string)$compensation->Unit['type'],
                     'label' => (string)$compensation->Unit,
                 ),
-                'stayLessOrEqual' => (string)$compensation->StayLessOrEqual,
                 'agencyCommision' => (string)$compensation->AgencyCommission,
             );
+            foreach ($compensation->children() as $child) {
+                $name = $child->getName();
+                if ($this->isBasicCompensation($name)) {
+                    continue;
+                }
+                $name = lcfirst($name);
+                $id = (int)$child['id'];
+                $compensationData[$name] = array(
+                    'label' => (string)$child,
+                );
+                if (!empty($id)) {
+                    $compensationData[$name]['id'] = $id;
+                }
+            }
+            $ret[] = $compensationData;
         }
         return $ret;
+    }
+
+    /**
+     * Returns true if the compensation belongs to basic ones
+     * @param  string  $compensation compensation name
+     * @return boolean
+     */
+    protected function isBasicCompensation($compensation)
+    {
+        return in_array($compensation, $this->basicCompensations);
     }
 
     protected function discounts2array(\SimpleXMLElement $discounts)
