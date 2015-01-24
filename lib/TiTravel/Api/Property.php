@@ -111,6 +111,9 @@ class Property extends Model
         foreach ($sxe->children() as $photo) {
             $photos[] = array(
                 'url' => (string)$photo->URL,
+                'urlLarge' => !isset($photo->UrlLarge) ? null : (string)$photo->UrlLarge,
+                'urlMedium' => !isset($photo->urlMedium) ? null : (string)$photo->urlMedium,
+                'urlSmall' => !isset($photo->urlSmall) ? null : (string)$photo->urlSmall,
                 'description' => (string)$photo->Description,
             );
         }
