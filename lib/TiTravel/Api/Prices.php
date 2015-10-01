@@ -64,6 +64,7 @@ class Prices extends Model
             'property_id' => 1,
             'property_ids' => 1,
             'range' => 1,
+            'year' => null
         );
         $wrongParams = array_diff_key($params, $allowedParams);
         if (!empty($wrongParams)) {
