@@ -29,6 +29,7 @@ try {
   </head>
   <body>
     <h1>Get default year</h1>
-    <p>Default year <?php echo $information->DefaultYear; ?></p>
+    <p>Default year <?php echo $information->getDefaultYear(); ?></p>
+    <p>PricelistYears <pre><?php var_dump($information->getPricelistYears()); ?></pre></p>
   </body>
 </html>
