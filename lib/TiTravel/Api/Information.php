@@ -17,6 +17,14 @@ class Information extends Model
   }
 
   /**
+   * @return array PricelistYears
+   */
+  public function getPricelistYears()
+  {
+    return $this->PricelistYears;
+  }
+
+  /**
    * Create info from XML
    * @param  \SimpleXMLElement $sxe the API response
    * @return Info
@@ -24,7 +32,8 @@ class Information extends Model
   public function fromXML(\SimpleXMLElement $sxe)
   {
     $this->setData(array(
-      DefaultYear => $sxe->DefaultYear
+      DefaultYear => (int) $sxe->DefaultYear,
+      PricelistYears => (array) $sxe->PricelistYears->PricelistYear,
     ));
     return $this;
   }
