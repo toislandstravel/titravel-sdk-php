@@ -157,6 +157,7 @@ class Price extends Model
         }
         foreach($periods->children() as $period) {
             $ret[] = array(
+                'id' => isset($period['id']) ? ((string) $period['id']) : '',
                 'start' => (string)$period->Start,
                 'end' => (string)$period->End,
                 'reservationDay' => (string)$period->ReservationDay,

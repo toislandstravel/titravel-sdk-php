@@ -32,8 +32,8 @@ class Information extends Model
   public function fromXML(\SimpleXMLElement $sxe)
   {
     $this->setData(array(
-      DefaultYear => (int) $sxe->DefaultYear,
-      PricelistYears => (array) $sxe->PricelistYears->PricelistYear,
+      'DefaultYear' => (int) $sxe->DefaultYear,
+      'PricelistYears' => (array) $sxe->PricelistYears->PricelistYear,
     ));
     return $this;
   }
