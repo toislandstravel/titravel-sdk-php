@@ -164,6 +164,7 @@ class Price extends Model
                 'minNights' => (string)$period->MinNights,
                 'price' => (string)$period->Price,
                 'discountPrice' => (string)$period->DiscountPrice,
+                'extraPerson' => (string)$period->ExtraPerson,
             );
         }
         return $ret;
