@@ -143,6 +143,7 @@ class Price extends Model
                 'type' => (string)$service->Type,
                 'persons' => (string)$service->NumberPerson,
                 'minNights' => (string)$service->MinNights,
+                'discounts' => $this->serviceDiscounts2array($service->Discounts),
                 'periods' => $this->servicePeriods2array($service->Periods),
             );
         }
@@ -169,4 +170,25 @@ class Price extends Model
         }
         return $ret;
     }
+
+    protected function serviceDiscounts2array(\SimpleXMLElement $discounts) {
+        $ret = array();
+
+        if (empty($discounts)) {
+            return $ret;
+        }
+
+        foreach ($discounts->children() as $discount) {
+            $ret[] = array(
+                "start" => (string)$discount->Start,
+                "end" => (string)$discount->End,
+                "percent" => (string)$discount->Percent
+            );
+
+        }
+
+        return $ret;
+
+    }
+
 }
