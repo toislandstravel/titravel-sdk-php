@@ -3,7 +3,7 @@
     "description": "To Island Travel's PHP SDK for API",
     "keywords": ["titravel", "toislandstravel", "api", "sdk"],
     "type": "library",
-    "license": "Apache2",
+    "license": "Apache-2.0",
     "homepage": "https://github.com/toislandstravel/titravel-sdk-php",
     "authors": [
         {
