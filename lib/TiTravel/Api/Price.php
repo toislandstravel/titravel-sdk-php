@@ -164,7 +164,7 @@ class Price extends Model
                 'reservationDay' => (string)$period->ReservationDay,
                 'minNights' => (string)$period->MinNights,
                 'price' => (string)$period->Price,
-                'discountPrice' => (string)$period->DiscountPrice,
+                'discountPrice' => isset($period->DiscountPrice) ? (string)$period->DiscountPrice : (string)$period->Price,
                 'extraPerson' => (string)$period->ExtraPerson,
             );
         }
