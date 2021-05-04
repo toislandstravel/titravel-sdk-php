@@ -50,6 +50,7 @@ class Property extends Model
                     'name' => (string)$location->Region,
                 ),
                 'country' => (string)$location->Country,
+                'address' => (string)$location->Address,
             ),
             'attributes' => array(
                 'object' => $this->xmlAttributes2Array($property->Attributes->Object),
