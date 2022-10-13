@@ -60,6 +60,7 @@ class Property extends Model
                 'object' => $this->xmlPhotos2Array($property->ObjectPhotos),
                 'unit' => $this->xmlPhotos2Array($property->UnitPhotos),
             ),
+            'CancellationPolicies' => array($this->xmlCancellationPolicies2Array($property->CancellationPolicies)),
         ));
     }
 
@@ -116,5 +117,25 @@ class Property extends Model
             );
         }
         return $photos;
+    }
+    /**
+     * Returns the XML cancellation policies as array
+     * @param  SimpleXMLElement $sxe the xml cancellation policies node
+     * @return array
+     */
+    protected function xmlCancellationPolicies2Array(\SimpleXMLElement $sxe)
+    {
+        if (empty($sxe)) {
+            return array();
+        }
+        $cancellationPolicies = array();
+        foreach ($sxe->children() as $cancellationPolicy) {
+            $cancellationPolicies[] = array(
+                'daysBeforeArrival' => (int)$cancellationPolicy->daysBeforeArrival,
+                'refundPercentage' => (int)$cancellationPolicy->refundPercent,
+                'Description' => (string)$cancellationPolicy->Description,
+            );
+        }
+        return $cancellationPolicies;
     }
 }
